@@ -26,6 +26,9 @@ function showResult() {
     expression = expression.replace(/√(\d+|\([^)]*\))/g, "Math.sqrt($1)");
     console.log(expression);
 
+    // Replace ^ with Math.pow(base, exponent)
+    expression = expression.replace(/(\d+|\([^)]*\))\^(\d+|\([^)]*\))/g, "Math.pow($1,$2)");
+
     try {
         display.value = eval(expression);
     } catch {
