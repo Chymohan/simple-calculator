@@ -20,11 +20,16 @@ document.getElementById("backspace").addEventListener("click", backspace);
 
 // function to calculate result 
 function showResult() {
+    let expression = display.value;
+
+    // Replace only the √ symbol with Math.sqrt()
+    expression = expression.replace(/√(\d+|\([^)]*\))/g, "Math.sqrt($1)");
+    console.log(expression);
+
     try {
-        display.value = eval(display.value);
-    }
-    catch {
-        display.value = "Error!!"
+        display.value = eval(expression);
+    } catch {
+        display.value = "Error!!";
     }
 }
 document.getElementById("result").addEventListener("click", showResult);
